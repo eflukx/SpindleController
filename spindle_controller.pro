@@ -1,4 +1,4 @@
-update=14-4-2017 11:27:19
+update=18/05/2017 15:06:38
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,3 +59,4 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=D:/Code/hardware/iotta-kicad-libs/iotta_wsn_rev2
+LibName31=smisioto.no-ip.org/w_connectors
