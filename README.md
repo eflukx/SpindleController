@@ -8,6 +8,12 @@ I've added a nice -mostly single sided- PCB and bases the design on the ubiquito
 
 The spindle speed is controlled by means of an optical pickup (rotational pulse) and a PID loop. A break-off mini-board with the TCRT5000 optical pickup to fit inside the Kress 530FM spindle is included in the PCB design.
 
+
+## Power supply
+The board includes a 6 volt mains transformer which supplies the logic power. The power supply may be omitted when the circuit is powered from the headers. Probably using the 5V out of a USB Serial (TTL!) cable will suffice to power the circuit. 
+
+To minimize dissipation, I've chosen a 6V transformer in conjunction with a low drop linear (LDO) regulator. Alternatively you can use a standard 7805, but a slightly higher input voltage is needed. A 8-9 volt transformer will do, the heat dissipation from the 7805 will be a bit higher. Probably you'll still be ok with the ground plane as heatsink, otherwise place a small heatsink.
+
 ## Planned for 1st release
 - PID controlled speed via RPM pulse.
 - Manual speed control via knob (rotary encoder)
