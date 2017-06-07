@@ -1078,6 +1078,39 @@ F 3 "" H 10700 5800 50  0001 C CNN
 	1    10700 5800
 	-1   0    0    1   
 $EndComp
+$Comp
+L SW_SPST SW2
+U 1 1 59387C9F
+P 9300 3850
+F 0 "SW2" H 9300 4085 50  0000 C CNN
+F 1 "SW_SPST" H 9300 3994 50  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_PUSH_6mm" H 9300 3850 50  0001 C CNN
+F 3 "" H 9300 3850 50  0001 C CNN
+	1    9300 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R19
+U 1 1 59387E1D
+P 8900 3850
+F 0 "R19" V 8693 3850 50  0000 C CNN
+F 1 "360" V 8784 3850 50  0000 C CNN
+F 2 "Resistors_ThroughHole:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 8830 3850 50  0001 C CNN
+F 3 "" H 8900 3850 50  0001 C CNN
+	1    8900 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR021
+U 1 1 59387EFB
+P 8650 3950
+F 0 "#PWR021" H 8650 3700 50  0001 C CNN
+F 1 "GND" H 8655 3777 50  0000 C CNN
+F 2 "" H 8650 3950 50  0001 C CNN
+F 3 "" H 8650 3950 50  0001 C CNN
+	1    8650 3950
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	1250 3300 1600 3300
 Wire Wire Line
@@ -1478,4 +1511,14 @@ Wire Wire Line
 Connection ~ 8600 5550
 Wire Wire Line
 	8600 5350 8700 5350
+Text Label 9650 4050 0    60   ~ 0
+RST
+Wire Wire Line
+	9050 3950 9050 4050
+Wire Wire Line
+	9050 4050 9650 4050
+Wire Wire Line
+	8650 3950 8650 3850
+Wire Wire Line
+	8650 3850 8750 3850
 $EndSCHEMATC
