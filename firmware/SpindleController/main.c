@@ -5,12 +5,11 @@
 * Author : Rogier Lodewijks
 */
 
-#include <avr/io.h>
-#include <avr/wdt.h>
-#include <util/delay.h>
 
-#include "max7219_config.h"
-#include "max7219.h"
+#include "globals.h"
+#include "drivers/max7219.h"
+#include "console.h"
+#include "rotary_switch.h"
 
 // http://www.fourwalledcubicle.com/files/LUFA/Doc/120730/html/_page__software_bootloader_start.html
 
@@ -38,6 +37,10 @@ static void display_value(int16_t value)
 
 int main(void)
 {
+	
+	console_init();
+	
+	renc_init();
 	begin:
 	
 	/* Initialize MAX7219 and setup pins */

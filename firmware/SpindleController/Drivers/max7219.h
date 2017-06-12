@@ -18,6 +18,7 @@
 #ifndef MAX7219_H
 #define MAX7219_H
 
+#include <stdint.h>
 #include "max7219_config.h"
 
 #define MAX7219_ADDR_NOOP           0x00

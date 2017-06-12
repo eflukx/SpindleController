@@ -36,13 +36,13 @@
 //clk	4	pd4
 
 /* Set port with DATA pin */
-#define MAX7219_PORT_DATA       PORTD
+#define MAX7219_PORT_DATA       PORTB
 
 /* Set direction register for DATA */
-#define MAX7219_DREG_DATA       DDRD
+#define MAX7219_DREG_DATA       DDRB
 
 /* Set pin for DATA */
-#define MAX7219_PIN_DATA        1
+#define MAX7219_PIN_DATA        3
 
 /* Set port with CLK pin */
 #define MAX7219_PORT_CLK        MAX7219_PORT_DATA
@@ -51,7 +51,7 @@
 #define MAX7219_DREG_CLK        MAX7219_DREG_DATA
 
 /* Set pin for CLK */
-#define MAX7219_PIN_CLK         4
+#define MAX7219_PIN_CLK         5
 
 /* Set port with LOAD pin */
 #define MAX7219_PORT_LOAD       MAX7219_PORT_DATA
@@ -60,6 +60,6 @@
 #define MAX7219_DREG_LOAD       MAX7219_DREG_DATA
 
 /* Set pin for LOAD */
-#define MAX7219_PIN_LOAD        0
+#define MAX7219_PIN_LOAD        2
 
 #endif  /* MAX7219_CONFIG_H */
