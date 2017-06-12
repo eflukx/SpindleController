@@ -9,8 +9,9 @@
 
 /* Set the number of digits */
 #define MAX7219_DIGITS          8
-
 #define MAX7219_SWAP_DIGITS		1
+
+#define MAX7219_MAX_INTENSITY	4
 
 /***
 * Pin configurations

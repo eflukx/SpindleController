@@ -5,11 +5,12 @@
 * Author : Rogier Lodewijks
 */
 
-
 #include "globals.h"
+
 #include "drivers/max7219.h"
 #include "console.h"
 #include "rotary_switch.h"
+#include "zero_cross.h"
 
 // http://www.fourwalledcubicle.com/files/LUFA/Doc/120730/html/_page__software_bootloader_start.html
 
@@ -37,10 +38,20 @@ static void display_value(int16_t value)
 
 int main(void)
 {
+	uint8_t reset_reason =	MCUSR;
+	MCUSR = 0;
 	
-	console_init();
+	wdt_reset();
+	//wdt_enable(WDTO_4S);
+	
+	console_init(reset_reason);
+	
+	init_timer_tick();
 	
 	renc_init();
+	
+	init_zerocross();
+	
 	begin:
 	
 	/* Initialize MAX7219 and setup pins */
@@ -48,7 +59,7 @@ int main(void)
 	
 	/* Build-in test feature of MAX7219 */
 	max7219_test_on();
-	_delay_ms(1000);
+	_delay_ms(100);
 	max7219_test_off();
 
 	/* Display HELO message */

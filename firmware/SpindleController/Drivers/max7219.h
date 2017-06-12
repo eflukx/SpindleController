@@ -88,19 +88,19 @@ void  max7219_helo(void);
 #define max7219_noop()              max7219_push(MAX7219_ADDR_NOOP, 0)
 
 /* Set LED intensity to maximum (15) */
-#define max7219_intensity_max()     max7219_push(MAX7219_ADDR_INTENSITY, 15)
+#define max7219_intensity_max()     max7219_push(MAX7219_ADDR_INTENSITY, MAX7219_MAX_INTENSITY)
 
 /* Set LED intensity to minimum (0) */
 #define max7219_intensity_min()     max7219_push(MAX7219_ADDR_INTENSITY, 0)
 
 /* Set LED intensity to ~half (8) */
-#define max7219_intensity_dim()     max7219_push(MAX7219_ADDR_INTENSITY, 8)
+#define max7219_intensity_dim()     max7219_push(MAX7219_ADDR_INTENSITY, (MAX7219_MAX_INTENSITY >> 1))
 
 /* Set LED intensity to value `L', which must
    be of uint8_t type. If value is larger than
    maximum (15) it will be clipped.
  */
-#define max7219_intensity(L)        max7219_push(MAX7219_ADDR_INTENSITY, L > 15 ? 15 : L)
+#define max7219_intensity(L)        max7219_push(MAX7219_ADDR_INTENSITY, L > MAX7219_MAX_INTENSITY ? MAX7219_MAX_INTENSITY : L)
 
 /* Enable test pattern (all LEDs to on) */
 #define max7219_test_on()           max7219_push(MAX7219_ADDR_DISPTEST, 1)

@@ -16,8 +16,6 @@ volatile uint8_t last_pulse = 'A';
 volatile int8_t direction = 1;
 volatile int16_t position = 0;
 
-volatile uint8_t printing_mutex = 0;
-
 void renc_init()
 {
 	GPIO_INPUT(GPIO_DDR_FROM_PORT(RENC_PORT), RENC_PIN_A);
@@ -29,20 +27,21 @@ void renc_init()
 
 void renc_print_position()
 {
+	volatile static uint8_t mutex = 0;
+	if(mutex) return;
+	wdt_reset();
 	int16_t pos = position;
 	
-	if(printing_mutex) return;
-	
-	printing_mutex = 1;
-	for(int16_t x = 0; x < pos; x++) xputc ('*');
-	xprintf("\nPosition: %d\n", pos);
-	
-	printing_mutex = 0;
+	mutex = 1;
+		for(int16_t x = 0; x < pos; x++) xputc ('*');
+		xprintf("\nPosition: %d\n", pos);
+	mutex = 0;
 }
 
 void renc_intA()
 {
 	if(last_pulse == 'A') direction = 1;
+	position += direction;
 	last_pulse = 'A';
 }
 

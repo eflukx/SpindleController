@@ -30,7 +30,7 @@ void  max7219_init(void)
 	max7219_push(MAX7219_ADDR_SCANLIM, MAX7219_DIGITS - 1);
 
 	/* Put the torches high! */
-	max7219_intensity_max();
+	max7219_intensity_dim();
 
 	/* Crank up the chip */
 	max7219_crank();

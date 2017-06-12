@@ -13,4 +13,6 @@
 #define RENC_PIN_B	6
 #define RENC_PIN_A	7
 
+void renc_init();
+
 #endif /* ROTARY_SWITCH_H_ */

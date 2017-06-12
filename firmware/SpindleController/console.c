@@ -12,7 +12,7 @@
 
 #define SOFTUART 1
 
-void console_init()
+void console_init(uint8_t reset_reason)
 {
 	#if SOFTUART
 		softuart_init(CONSOLE_BAUDRATE);
@@ -25,4 +25,15 @@ void console_init()
 	#ifdef SERIAL_BANNER
 		info_puts_P(SERIAL_BANNER);
 	#endif
+	
+	if(reset_reason) print_reset_reason(reset_reason);
+}
+
+void print_reset_reason(uint8_t reset_reason)
+{
+	if(reset_reason & _BV(WDRF)) xputs_P("Watchdog ");
+	if(reset_reason & _BV(BORF)) xputs_P("Brown-out ");
+	if(reset_reason & _BV(EXTRF)) xputs_P("External ");
+	if(reset_reason & _BV(PORF)) xputs_P("Power on ");
+	xprintf_P("reset (0x%02x).\n", reset_reason);
 }

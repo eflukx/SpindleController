@@ -15,9 +15,11 @@
 #include <avr/pgmspace.h>
 #include <avr/sleep.h>
 #include <avr/interrupt.h>
+#include <avr/wdt.h>
 #include <util/delay.h>
 
 #include "gpio.h"
+#include "time_keeping.h"
 #include "lib/xprintf.h"
 
 #define CONSOLE_BAUDRATE 115200
