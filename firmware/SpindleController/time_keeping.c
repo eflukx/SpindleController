@@ -6,26 +6,69 @@
 */
 
 #include "globals.h"
+#include <util/atomic.h>
 
-volatile static uint16_t msec = 0;
-volatile static uint32_t sec = 0;
+volatile static uint16_t msecs = 0;
+volatile static uint16_t dsecs = 0;	// 10 ms counter
+volatile static uint32_t seconds = 0;
 
-void init_timer_tick()
+void timer_tick_init()
 {
 	TCNT0 = 0;
 	TCCR0B = _BV(CS01) | _BV(CS00);	// Prescaler 64 16MHz / 64 = 250KHz
 	
-	OCR0A = 250;					// Set Output Compare level @250 -> 1ms interrupt
 	TIMSK0 = _BV(OCIE0A);			// Enable interrupts on Output Compare A
 }
 
+uint32_t timer_get_seconds()
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		return seconds;
+	}
+	return 0; //Dummy to prevent spurious "control reaches end of non-void function [-Wreturn-type]" compiler warning
+}
+
+uint32_t timer_get_msecs()
+{
+		ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+		{
+			return seconds * 1000 + msecs;
+		}
+		return 0;
+}
+
+time_t timer_get_time()
+{
+	time_t time;
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		time.secs = seconds;
+		time.msecs = msecs;
+	}
+	return time;
+}
+
+
+
 ISR(TIMER0_COMPA_vect)
 {
-	msec++;
+	OCR0A += 250;		// 250 ticks @ 250kHz --> 1ms timer interrupt
 	
-	if(msec >= 1000)
+	static uint8_t _dusec = 0;
+	_dusec++;
+	msecs++;
+	
+	if(msecs >= 1000)
 	{
-		msec = 0;
-		sec++;
+		msecs = 0;
+		seconds++;
+	}
+	
+	if(_dusec >= 100)
+	{
+		_dusec = 0;
+		dsecs++;
 	}
 }
+
