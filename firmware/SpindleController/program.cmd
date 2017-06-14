@@ -21,6 +21,11 @@ set params=-c usbasp -p %device%
 set fuse_params= -U lfuse:w:%lfuse%:m -U hfuse:w:%hfuse%:m
 set avrdude_cmd=%avrdude% %params%
 
+if "%1"=="reset" (
+	%avrdude_cmd%
+	goto exit
+)
+
 if "%1"=="fuses" (
 	%avrdude_cmd% -B 3 %fuse_params%
 	goto exit

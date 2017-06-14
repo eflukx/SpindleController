@@ -1,66 +1,31 @@
 #ifndef MAX7219_CONFIG_H
 #define MAX7219_CONFIG_H
 
-/* Set boot delay (in miliseconds) */
-#define MAX7219_BOOT_TIME		1
-
-/* Define this to use much slower, time based clock */
-// #define MAX7219_SLOW_CLOCK_US 10
-
 /* Set the number of digits */
 #define MAX7219_DIGITS          8
 #define MAX7219_SWAP_DIGITS		1
 
 #define MAX7219_MAX_INTENSITY	4
 
-/***
-* Pin configurations
-*
-* MAX7219 is using three pins for communication:
-*   DATA (also known as DIN) is an internal shift
-*   register input. We'll feed data through it.
-*
-*   CLK (or CLOCK) is an input pin for clock.
-*
-*   LOAD (or CS) is used to block the internal
-*   shift register output, so shifted bits are
-*   not propagated during transfer.
-*
-* Pin numbers for DIP24:
-*   DATA       1
-*   CLK        13
-*   LOAD       12
-***/
+ /* Pin configuration  */
 
-//din 2	pd1
-//cs	3	pd0
-//clk	4	pd4
+#define MAX7219_BIT_BANG		0 //use bit-banging or hardware SPI?
+	/* Set port with LOAD pin */
+	#define MAX7219_CS_PORT			PORTB
+	#define MAX7219_CS_DDR			DDRB
+	#define MAX7219_PIN_LOAD		2
 
-/* Set port with DATA pin */
-#define MAX7219_PORT_DATA       PORTB
 
-/* Set direction register for DATA */
-#define MAX7219_DREG_DATA       DDRB
+#if MAX7219_BIT_BANG
+	/* Set port with DATA pin */
+	#define MAX7219_DATA_PORT		MAX7219_CS_PORT
+	#define MAX7219_DATA_DDR		MAX7219_CS_DDR
+	#define MAX7219_DATA_PIN		3
 
-/* Set pin for DATA */
-#define MAX7219_PIN_DATA        3
-
-/* Set port with CLK pin */
-#define MAX7219_PORT_CLK        MAX7219_PORT_DATA
-
-/* Set direction register for CLK */
-#define MAX7219_DREG_CLK        MAX7219_DREG_DATA
-
-/* Set pin for CLK */
-#define MAX7219_PIN_CLK         5
-
-/* Set port with LOAD pin */
-#define MAX7219_PORT_LOAD       MAX7219_PORT_DATA
-
-/* Set direction register for LOAD */
-#define MAX7219_DREG_LOAD       MAX7219_DREG_DATA
-
-/* Set pin for LOAD */
-#define MAX7219_PIN_LOAD        2
+	/* Set port with CLK pin */
+	#define MAX7219_CLK_PORT		MAX7219_CS_PORT
+	#define MAX7219_CLK_DDR			MAX7219_CS_DDR
+	#define MAX7219_CLK_PIN			5
+#endif
 
 #endif  /* MAX7219_CONFIG_H */

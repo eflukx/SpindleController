@@ -17,11 +17,16 @@
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
+#include <util/atomic.h>
 
+#include "lib/xprintf.h"
+#include "ftoa.h"
 #include "gpio.h"
 #include "time_keeping.h"
-#include "lib/xprintf.h"
 
-#define CONSOLE_BAUDRATE 115200
+
+#define CONSOLE_BAUDRATE 460800 //115200
+#define true 1
+#define false 0
 
 #endif /* GLOBALS_H_ */

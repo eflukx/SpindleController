@@ -38,12 +38,11 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
-    <avrtoolserialnumber>
-    </avrtoolserialnumber>
+    <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
+    <avrtoolserialnumber>J41800072788</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E950F</avrdeviceexpectedsignature>
     <avrtoolinterface>ISP</avrtoolinterface>
-    <avrtoolinterfaceclock>0</avrtoolinterfaceclock>
+    <avrtoolinterfaceclock>2013770</avrtoolinterfaceclock>
     <com_atmel_avrdbg_tool_ispmk2>
       <ToolOptions>
         <InterfaceProperties>
@@ -78,6 +77,17 @@
       </ToolNumber>
       <ToolName xmlns="">Simulator</ToolName>
     </com_atmel_avrdbg_tool_simulator>
+    <com_atmel_avrdbg_tool_atmelice>
+      <ToolOptions>
+        <InterfaceProperties>
+          <IspClock>2013770</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
+      <ToolNumber>J41800072788</ToolNumber>
+      <ToolName>Atmel-ICE</ToolName>
+    </com_atmel_avrdbg_tool_atmelice>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -146,7 +156,7 @@
             <Value>..</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
-        <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
         <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
         <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
         <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
@@ -172,6 +182,12 @@
     <Compile Include="console.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Drivers\7seg_chars.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\7seg_chars.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Drivers\max7219.c">
       <SubType>compile</SubType>
     </Compile>
@@ -184,6 +200,12 @@
     <Compile Include="Drivers\max7219_matrix.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Drivers\opto_sensor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\opto_sensor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Drivers\rotary_switch.c">
       <SubType>compile</SubType>
     </Compile>
@@ -194,6 +216,18 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Drivers\softuart_asm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\triac_drive.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\triac_drive.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Drivers\uart.h">
@@ -212,6 +246,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="lib\fifo.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\ftoa.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\ftoa.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="lib\gpio.h">
