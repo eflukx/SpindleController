@@ -13,6 +13,8 @@
 #define RENC_PIN_B	6
 #define RENC_PIN_A	7
 
+#define RENC_ACCELERATE		2	// acceleration factor, zero disables
+
 void renc_init();
 
 #endif /* ROTARY_SWITCH_H_ */
