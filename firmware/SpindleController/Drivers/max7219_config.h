@@ -10,11 +10,11 @@
  /* Pin configuration  */
 
 #define MAX7219_BIT_BANG		0 //use bit-banging or hardware SPI?
+
 	/* Set port with LOAD pin */
 	#define MAX7219_CS_PORT			PORTB
 	#define MAX7219_CS_DDR			DDRB
 	#define MAX7219_PIN_LOAD		2
-
 
 #if MAX7219_BIT_BANG
 	/* Set port with DATA pin */
